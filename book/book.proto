@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package book;
+
+service BookService {
+  // Sends the inventory of a specific author
+  rpc GetAllBooksByAuthor (GetAllBooksByAuthorRequest) returns (stream GetAllBooksByAuthorResponse) {}
+}
+
+// The request message containing the author's name.
+message GetAllBooksByAuthorRequest {
+  string author = 1;
+}
+
+// The response message containing the list of all author's books
+message GetAllBooksByAuthorResponse {
+  repeated Book books = 1;
+}
+
+message Book{
+  string title = 1;
+  string author = 2;
+  string description = 3;
+}
